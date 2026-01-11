@@ -1,0 +1,156 @@
+﻿{% extends "base.html" %}
+
+{% block content %}
+<!-- Hero Section with Header -->
+<section class="bg-gradient-to-b from-blue-50 to-green-50 py-10">
+    <!-- Header -->
+    <header class="max-w-7xl mx-auto px-6 mb-16">
+        <div class="bg-white rounded-2xl shadow-lg px-8 py-5 flex flex-col md:flex-row items-center justify-between">
+            <!-- Logo -->
+            <a href="/" class="flex items-center">
+                <img src="{{ url_for('static', filename='images/logo.png') }}"
+                     alt="Prof Akademi Logo"
+                     class="h-14 md:h-16 w-auto"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="bg-primary-dark text-white px-6 md:px-8 py-3 rounded-lg hidden">
+                    <h1 class="text-xl md:text-2xl font-bold">PROF AKADEMİ</h1>
+                </div>
+            </a>
+
+            <!-- Navigation -->
+            <nav class="flex gap-10 mt-6 md:mt-0">
+                <a href="#paketler" class="text-2xl font-bold hover:text-accent-lightGreen transition">Paketler</a>
+                <a href="#kamplar" class="text-2xl font-bold hover:text-accent-lightGreen transition">Kamplar</a>
+                <a href="#iletisim" class="text-2xl font-bold hover:text-accent-lightGreen transition">İletişim</a>
+            </nav>
+
+            <!-- Auth Buttons -->
+            <div class="flex gap-3 mt-6 md:mt-0">
+                <button class="px-6 py-2 text-2xl border-2 border-gray-300 rounded-lg hover:bg-gray-100 font-medium">Giriş Yap</button>
+                <button class="px-6 py-2 text-2xl bg-gradient-button text-white rounded-lg hover:opacity-90 font-medium">Kayıt Ol</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Content -->
+    <div class="max-w-7xl mx-auto px-6 text-center">
+        <h1 class="text-5xl md:text-5xl font-bold bg-white border-stroke border-2 text-text-dark mb-6 inline-block px-8 py-2">Başarıya Giden Yol</h1>
+        <h2 class="text-4xl md:text-6xl font-light text-text-dark mb-8 py-4">
+            ÜCRETSİZ <span class="font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#8BBE73] to-[#4D97B1]">
+        ÖN GÖRÜŞME</span> FIRSATI
+        </h2>
+        <button class="px-12 py-4 bg-gradient-button text-white font-bold text-3xl rounded-lg hover:opacity-90 mb-8">
+            HEMEN TIKLA, FORMU DOLDUR!
+        </button>
+        <p class="text-3xl font-bold text-black">SINIRLI KONTENJAN!</p>
+    </div>
+
+    <!-- Partners Content -->
+    <div class="max-w-7xl mx-auto px-6 py-10">
+        <h2 class="text-3xl md:text-5xl font-bold text-center text-text-dark mb-16">
+            Çalıştığımız Partnerler
+        </h2>
+
+        <!-- Auto-scroll Slider -->
+        <div class="relative overflow-hidden">
+            <div class="flex gap-8 animate-scroll hover:paused">
+                {% set partners = [
+                    {'name': 'Biyo', 'filename': 'logobiyotik.826075e6.png'},
+                    {'name': 'GLOBAL DERSHANE', 'filename': 'logo4.8447591d.png'},
+                    {'name': 'ALTIN KARİYER', 'filename': 'logo5.eb061c1f.png'},
+                    {'name': 'BİLGE DERSHANE', 'filename': 'logo2.08e2e78f.png'},
+                    {'name': 'DODU Matematik', 'filename': 'logo7.e4efe98b.png'},
+                    {'name': 'Full YAYINLARI', 'filename': 'logofull.95351693.png'},
+                    {'name': 'Biyo', 'filename': 'logobiyotik.826075e6.png'},
+                    {'name': 'GLOBAL DERSHANE', 'filename': 'logo4.8447591d.png'},
+                ] %}
+                {% for partner in partners %}
+                <div class="flex-shrink-0 w-48 h-36 bg-white rounded-lg flex items-center justify-center border border-gray-200 hover:shadow-lg transition-shadow">
+                    <img src="{{ url_for('static', filename='images/partners/' + partner.filename) }}"
+                         alt="{{ partner.name }}"
+                         class="max-h-28 max-w-40 object-contain"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <p class="text-center font-medium text-text-gray text-sm hidden">{{ partner.name }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+
+
+</section>
+
+<!-- Packages Section -->
+<section id="paketler" class="py-10 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+        <h2 class="text-4xl md:text-5xl font-bold text-center text-text-dark mb-16">Koçluk Paketlerimiz</h2>
+
+        <div class="grid md:grid-cols-2 gap-6">
+            {% for package in [
+                {
+                    'title': 'YKS Aylık Koçluk Paketi',
+                    'label': 'Aylık Birebir Koçluk',
+                    'price': '2.999₺/Aylık',
+                    'features': [
+                        '1 Ay boyunca koçluk',
+                        'Her hafta 2 birebir görüşme',
+                        'Kişiye özel günlük program',
+                        'Canlı ders ve kayıt erişimi',
+                        'Türkçe, Matematik, Geometri ve Fizik her hafta canlı ders',
+                        'Sınırsız soru çözdürme',
+                        '100+ deneme PDF\'ine erişim',
+                    ]
+                },
+                {
+                    'title': '2026 YKS Sınava Kadar Koçluk Paketi',
+                    'label': 'Sınava Kadar Birebir Koçluk',
+                    'price': '22.999₺/Tek Seferlik',
+                    'features': [
+                        'YKS\'ye kadar koçluk',
+                        'Her hafta 2 birebir görüşme',
+                        'Kişiye özel günlük program',
+                        'Canlı ders ve kayıt erişimi',
+                        'Türkçe, Matematik, Geometri ve Fizik her hafta canlı ders',
+                        'Sınırsız soru çözdürme',
+                        '100+ deneme PDF\'ine erişim',
+                        'Tüm Kamplara Ücretsiz Erişim',
+                        '15\'li Deneme Paketi',
+                    ]
+                }
+            ] %}
+            <div class="bg-white rounded-xl shadow-lg p-6 {% if loop.index == 2 %}border-4 border-accent-blue{% else %}border border-gray-200{% endif %} flex flex-col">
+                <p class="text-accent-blue font-semibold mb-2 text-sm">{{ package.label }}</p>
+                <h3 class="text-2xl font-bold mb-4">{{ package.title }}</h3>
+
+                <div class="bg-secondary-light rounded-lg h-48 mb-6 flex items-center justify-center border border-gray-200 flex-shrink-0">
+                    <svg class="w-20 h-20 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+
+                <ul class="space-y-2 mb-6 flex-1">
+                    {% for feature in package.features %}
+                    <li class="flex items-start gap-2">
+                        <svg class="w-5 h-5 text-accent-green mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                        </svg>
+                        <span class="text-text-gray text-sm">{{ feature }}</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+
+                <p class="text-3xl font-bold mb-6">{{ package.price }}</p>
+                <div class="flex gap-3">
+                    <button class="flex-1 px-4 py-2 border-2 border-accent-blue text-accent-blue font-medium rounded-lg hover:bg-accent-blue hover:text-white text-sm transition">Bilgi Alma</button>
+                    <button class="flex-1 px-4 py-2 bg-gradient-button text-white font-medium rounded-lg hover:opacity-90 text-sm transition">Hemen Al</button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

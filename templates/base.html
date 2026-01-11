@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Prof Akademi - Başarıya Giden Yol{% endblock %}</title>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fonts.css') }}">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: { dark: '#1D1D1B', DEFAULT: '#020202' },
+                        secondary: { light: '#F1FDFF', DEFAULT: '#FFFFFF' },
+                        accent: { blue: '#36A9E1', green: '#10B981', lightGreen: '#A8E063' },
+                        text: { gray: '#666666', dark: '#000000' },
+                        warning: { DEFAULT: '#E94E1B', orange: '#F39200' },
+                    },
+                    fontFamily: { sans: ['MADE TOMMY', 'sans-serif'] },
+                    backgroundImage: { 'gradient-button': 'linear-gradient(to right, #8BBE73, #4D97B1)' },
+                    animation: {
+                        scroll: 'scroll 20s linear infinite',
+                    },
+                    keyframes: {
+                        scroll: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        }
+                    }
+                },
+            },
+        }
+    </script>
+    {% block extra_head %}{% endblock %}
+</head>
+<body class="font-sans antialiased">
+    {% block content %}{% endblock %}
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>
+       
