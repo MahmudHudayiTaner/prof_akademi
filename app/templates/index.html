@@ -2,7 +2,7 @@
 
 {% block content %}
 <!-- Hero Section with Header -->
-<section class="bg-gradient-to-b from-blue-50 to-green-50 py-10">
+<section class="min-h-screen bg-gradient-to-b from-blue-50 to-green-50 py-10">
     <!-- Header -->
     <header class="max-w-7xl mx-auto px-6 mb-16">
         <div class="bg-white rounded-2xl shadow-lg px-8 py-5 flex flex-col md:flex-row items-center justify-between">
@@ -19,38 +19,57 @@
 
             <!-- Navigation -->
             <nav class="flex gap-10 mt-6 md:mt-0">
-                <a href="#paketler" class="text-2xl font-bold hover:text-accent-lightGreen transition">Paketler</a>
-                <a href="#kamplar" class="text-2xl font-bold hover:text-accent-lightGreen transition">Kamplar</a>
-                <a href="#iletisim" class="text-2xl font-bold hover:text-accent-lightGreen transition">İletişim</a>
+                <a href="#paketler" class="text-[24px] font-bold hover:text-accent-lightGreen transition">Paketler</a>
+                <a href="#kamplar" class="text-[24px] font-bold hover:text-accent-lightGreen transition">Kamplar</a>
+                <a href="#iletisim" class="text-[24px] font-bold hover:text-accent-lightGreen transition">İletişim</a>
             </nav>
 
             <!-- Auth Buttons -->
             <div class="flex gap-3 mt-6 md:mt-0">
-                <button class="px-6 py-2 text-2xl border-2 border-gray-300 rounded-lg hover:bg-gray-100 font-medium">Giriş Yap</button>
-                <button class="px-6 py-2 text-2xl bg-gradient-button text-white rounded-lg hover:opacity-90 font-medium">Kayıt Ol</button>
+                <button class="px-6 py-2 text-[24px] border-2 border-gray-300 rounded-lg hover:bg-gray-100 font-medium">Giriş Yap</button>
+                <button class="px-6 py-2 text-[24px] bg-gradient-button text-white rounded-lg hover:opacity-90 font-medium">Kayıt Ol</button>
             </div>
         </div>
     </header>
 
     <!-- Hero Content -->
     <div class="max-w-7xl mx-auto px-6 text-center">
-        <h1 class="text-5xl md:text-5xl font-bold bg-white border-stroke border-2 text-text-dark mb-6 inline-block px-8 py-2">Başarıya Giden Yol</h1>
-        <h2 class="text-4xl md:text-6xl font-light text-text-dark mb-8 py-4">
+        <h1 class="text-[64px] font-bold bg-white border-stroke border-2 text-text-dark mb-6 inline-block px-8 py-2">Başarıya Giden Yol</h1>
+        <h2 class="text-[80px] md:text-6xl font-light text-text-dark mb-8 py-4">
             ÜCRETSİZ <span class="font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#8BBE73] to-[#4D97B1]">
         ÖN GÖRÜŞME</span> FIRSATI
         </h2>
-        <button class="px-12 py-4 bg-gradient-button text-white font-bold text-3xl rounded-lg hover:opacity-90 mb-8">
+        <button class="px-12 py-4 bg-gradient-button text-white font-bold text-[36px] rounded-lg hover:opacity-90 mb-8">
             HEMEN TIKLA, FORMU DOLDUR!
         </button>
-        <p class="text-3xl font-bold text-black">SINIRLI KONTENJAN!</p>
+
+        <p class="text-[36px] font-bold text-black border-stroke border-2 inline-block px-4 py-2">2025 YKS Şampiyonları ProfAkademi'de</p>
+
+          <!-- 3 Resim Yan Yana -->
+        <div class="flex justify-center gap-8 max-w-4xl mx-auto">
+            <div class="w-140 h-140">
+                <img src="static/images/2025-sampiyonlar/1.png" alt="Açıklama 1" class="w-full h-full object-contain">
+            </div>
+            <div class="w-140 h-140">
+                <img src="static/images/2025-sampiyonlar/2.png" alt="Açıklama 2" class="w-full h-full object-contain">
+            </div>
+            <div class="w-140 h-140">
+                <img src="static/images/2025-sampiyonlar/3.png" alt="Açıklama 3" class="w-full h-full object-contain">
+            </div>
+        </div>
+    
+    </div>
     </div>
 
+</section>
+
+<!-- Partner Section -->
+    <section id="partners" class="min-h-[33vh] bg-white py-10">
     <!-- Partners Content -->
     <div class="max-w-7xl mx-auto px-6 py-10">
         <h2 class="text-3xl md:text-5xl font-bold text-center text-text-dark mb-16">
             Çalıştığımız Partnerler
         </h2>
-
         <!-- Auto-scroll Slider -->
         <div class="relative overflow-hidden">
             <div class="flex gap-8 animate-scroll hover:paused">
@@ -77,13 +96,10 @@
         </div>
     </div>
 
-
-
-
-</section>
+    </section>
 
 <!-- Packages Section -->
-<section id="paketler" class="py-10 bg-white">
+<section id="paketler" class="min-h-screen flex items-center justify-center bg-secondary-light">
     <div class="max-w-7xl mx-auto px-6">
         <h2 class="text-4xl md:text-5xl font-bold text-center text-text-dark mb-16">Koçluk Paketlerimiz</h2>
 
@@ -153,4 +169,13 @@
     </div>
 </section>
 
-{% endblock %}
+
+
+<!-- Taner Mirza Özel -->
+ <section id="taner-mirza-ozel" class="min-h-screen bg-white py-20">
+    <div class="max-w-7xl mx-auto px-6 w-full">
+    <h2 class="text-[48px] font-bold text-center text-text-dark mb-16">Taner Mirza Özel</h2>
+   </div>
+ </section>
+
+ {% endblock %}
