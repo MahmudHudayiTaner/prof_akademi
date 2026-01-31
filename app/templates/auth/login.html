@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="min-h-screen bg-gradient-to-b from-blue-50 to-green-50 py-16 px-6">
+    <div class="max-w-md mx-auto">
+        <div class="bg-white rounded-2xl shadow-lg border border-gray-200 p-8">
+            <h2 class="text-3xl font-bold text-text-dark text-center mb-8">Giriş Yap</h2>
+            <form method="POST" action="" class="space-y-5">
+                {{ form.hidden_tag() }}
+
+                <div>
+                    <label class="block text-sm font-semibold text-text-dark mb-2">{{ form.email.label.text }}</label>
+                    {{ form.email(class="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent-blue") }}
+                    {% for error in form.email.errors %}
+                        <p class="mt-2 text-sm text-warning">{{ error }}</p>
+                    {% endfor %}
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-text-dark mb-2">{{ form.password.label.text }}</label>
+                    {{ form.password(class="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent-blue") }}
+                    {% for error in form.password.errors %}
+                        <p class="mt-2 text-sm text-warning">{{ error }}</p>
+                    {% endfor %}
+                </div>
+
+                <div class="flex items-center gap-2">
+                    {{ form.remember_me(class="h-4 w-4 rounded border-gray-300 text-accent-blue focus:ring-accent-blue") }}
+                    <span class="text-sm text-text-gray">Beni Hatırla</span>
+                </div>
+
+                {{ form.submit(class="w-full py-3 rounded-lg bg-gradient-button text-white font-bold text-lg hover:opacity-90 transition") }}
+            </form>
+
+            <div class="mt-6 text-center">
+                <a href="{{ url_for('auth.register') }}" class="text-sm font-semibold text-accent-blue hover:underline">Hesabın yok mu? Kayıt ol</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

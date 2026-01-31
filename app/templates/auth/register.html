@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="min-h-screen bg-gradient-to-b from-blue-50 to-green-50 py-16 px-6">
+    <div class="max-w-md mx-auto">
+        <div class="bg-white rounded-2xl shadow-lg border border-gray-200 p-8">
+            <h2 class="text-3xl font-bold text-text-dark text-center mb-8">Kayıt Ol</h2>
+            <form method="POST" action="" class="space-y-5">
+                {{ form.hidden_tag() }}
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-text-dark mb-2">{{ form.first_name.label.text }}</label>
+                        {{ form.first_name(class="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent-blue") }}
+                        {% for error in form.first_name.errors %}
+                            <p class="mt-2 text-sm text-warning">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-text-dark mb-2">{{ form.last_name.label.text }}</label>
+                        {{ form.last_name(class="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent-blue") }}
+                        {% for error in form.last_name.errors %}
+                            <p class="mt-2 text-sm text-warning">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-text-dark mb-2">{{ form.email.label.text }}</label>
+                    {{ form.email(class="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent-blue") }}
+                    {% for error in form.email.errors %}
+                        <p class="mt-2 text-sm text-warning">{{ error }}</p>
+                    {% endfor %}
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-text-dark mb-2">{{ form.phone.label.text }}</label>
+                    {{ form.phone(class="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent-blue") }}
+                    {% for error in form.phone.errors %}
+                        <p class="mt-2 text-sm text-warning">{{ error }}</p>
+                    {% endfor %}
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-text-dark mb-2">{{ form.password.label.text }}</label>
+                    {{ form.password(class="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent-blue") }}
+                    {% for error in form.password.errors %}
+                        <p class="mt-2 text-sm text-warning">{{ error }}</p>
+                    {% endfor %}
+                </div>
+                <div>
+                    <label class="flex items-start gap-3">
+                        {{ form.accept_terms(class="mt-1 h-4 w-4 rounded border-gray-300 text-accent-blue focus:ring-accent-blue") }}
+                        <span class="text-sm text-text-gray">{{ form.accept_terms.label.text }}</span>
+                    </label>
+                    {% for error in form.accept_terms.errors %}
+                        <p class="mt-2 text-sm text-warning">{{ error }}</p>
+                    {% endfor %}
+                </div>
+                {{ form.submit(class="w-full py-3 rounded-lg bg-gradient-button text-white font-bold text-lg hover:opacity-90 transition") }}
+            </form>
+            <div class="mt-6 text-center">
+                <a href="{{ url_for('auth.login') }}" class="text-sm font-semibold text-accent-blue hover:underline">Zaten hesabın var mı? Giriş yap</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

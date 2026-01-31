@@ -1,5 +1,7 @@
 ﻿{% extends "base.html" %}
 
+{% block navbar %}{% endblock %}
+
 {% block content %}
 <!-- Hero Section with Header -->
 <section class="min-h-screen bg-gradient-to-b from-blue-50 to-green-50 py-10">
@@ -26,8 +28,12 @@
 
             <!-- Auth Buttons -->
             <div class="flex gap-3 mt-6 md:mt-0">
-                <button class="px-6 py-2 text-[24px] border-2 border-gray-300 rounded-lg hover:bg-gray-100 font-medium">Giriş Yap</button>
-                <button class="px-6 py-2 text-[24px] bg-gradient-button text-white rounded-lg hover:opacity-90 font-medium">Kayıt Ol</button>
+                {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('auth.logout') }}" class="px-6 py-2 text-[24px] bg-gradient-button text-white rounded-lg hover:opacity-90 font-medium">Çıkış Yap</a>
+                {% else %}
+                    <a href="{{ url_for('auth.login') }}" class="px-6 py-2 text-[24px] border-2 border-gray-300 rounded-lg hover:bg-gray-100 font-medium">Giriş Yap</a>
+                    <a href="{{ url_for('auth.register') }}" class="px-6 py-2 text-[24px] bg-gradient-button text-white rounded-lg hover:opacity-90 font-medium">Kayıt Ol</a>
+                {% endif %}
             </div>
         </div>
     </header>
@@ -66,30 +72,35 @@
 <!-- Partner Section -->
     <section id="partners" class="min-h-[33vh] bg-white py-10">
     <!-- Partners Content -->
-    <div class="max-w-7xl mx-auto px-6 py-10">
-        <h2 class="text-3xl md:text-5xl font-bold text-center text-text-dark mb-16">
-            Çalıştığımız Partnerler
-        </h2>
+    <div class="w-full py-10">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-3xl md:text-5xl font-bold text-center text-text-dark mb-16">
+                Çalıştığımız Partnerler
+            </h2>
+        </div>
         <!-- Auto-scroll Slider -->
-        <div class="relative overflow-hidden">
-            <div class="flex gap-8 animate-scroll hover:paused">
-                {% set partners = [
-                    {'name': 'Biyo', 'filename': 'logobiyotik.826075e6.png'},
-                    {'name': 'GLOBAL DERSHANE', 'filename': 'logo4.8447591d.png'},
-                    {'name': 'ALTIN KARİYER', 'filename': 'logo5.eb061c1f.png'},
-                    {'name': 'BİLGE DERSHANE', 'filename': 'logo2.08e2e78f.png'},
-                    {'name': 'DODU Matematik', 'filename': 'logo7.e4efe98b.png'},
-                    {'name': 'Full YAYINLARI', 'filename': 'logofull.95351693.png'},
-                    {'name': 'Biyo', 'filename': 'logobiyotik.826075e6.png'},
-                    {'name': 'GLOBAL DERSHANE', 'filename': 'logo4.8447591d.png'},
-                ] %}
-                {% for partner in partners %}
-                <div class="flex-shrink-0 w-48 h-36 bg-white rounded-lg flex items-center justify-center border border-gray-200 hover:shadow-lg transition-shadow">
-                    <img src="{{ url_for('static', filename='images/partners/' + partner.filename) }}"
-                         alt="{{ partner.name }}"
-                         class="max-h-28 max-w-40 object-contain"
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <p class="text-center font-medium text-text-gray text-sm hidden">{{ partner.name }}</p>
+        <div class="relative overflow-hidden w-full">
+            {% set partners_base = [
+                {'name': 'Biyo', 'filename': 'logobiyotik.826075e6.png'},
+                {'name': 'GLOBAL DERSHANE', 'filename': 'logo4.8447591d.png'},
+                {'name': 'ALTIN KARİYER', 'filename': 'logo5.eb061c1f.png'},
+                {'name': 'BİLGE DERSHANE', 'filename': 'logo2.08e2e78f.png'},
+                {'name': 'DODU Matematik', 'filename': 'logo7.e4efe98b.png'},
+                {'name': 'Full YAYINLARI', 'filename': 'logofull.95351693.png'},
+            ] %}
+
+            <div class="flex w-[200%] animate-scroll hover:paused">
+                {% for _ in range(2) %}
+                <div class="w-1/2 flex items-center justify-between" style="--g: max(2rem, calc((100vw - 6 * 12rem) / 6)); padding-left: calc(var(--g) / 2); padding-right: calc(var(--g) / 2);">
+                    {% for partner in partners_base %}
+                    <div class="flex-shrink-0 w-48 h-36 bg-white rounded-lg flex items-center justify-center border border-gray-200 hover:shadow-lg transition-shadow">
+                        <img src="{{ url_for('static', filename='images/partners/' + partner.filename) }}"
+                             alt="{{ partner.name }}"
+                             class="max-h-28 max-w-40 object-contain"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <p class="text-center font-medium text-text-gray text-sm hidden">{{ partner.name }}</p>
+                    </div>
+                    {% endfor %}
                 </div>
                 {% endfor %}
             </div>

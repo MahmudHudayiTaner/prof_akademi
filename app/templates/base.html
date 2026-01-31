@@ -37,8 +37,62 @@
     {% block extra_head %}{% endblock %}
 </head>
 <body class="font-sans antialiased">
+    {% block navbar %}
+    <header class="max-w-7xl mx-auto px-6 mb-16 mt-10">
+        <div class="bg-white rounded-2xl shadow-lg px-8 py-5 flex flex-col md:flex-row items-center justify-between">
+            <a href="/" class="flex items-center">
+                <img src="{{ url_for('static', filename='images/logo.png') }}"
+                     alt="Prof Akademi Logo"
+                     class="h-14 md:h-16 w-auto"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="bg-primary-dark text-white px-6 md:px-8 py-3 rounded-lg hidden">
+                    <h1 class="text-xl md:text-2xl font-bold">PROF AKADEMİ</h1>
+                </div>
+            </a>
+
+            <nav class="flex gap-10 mt-6 md:mt-0">
+                <a href="#paketler" class="text-[24px] font-bold hover:text-accent-lightGreen transition">Paketler</a>
+                <a href="#kamplar" class="text-[24px] font-bold hover:text-accent-lightGreen transition">Kamplar</a>
+                <a href="#iletisim" class="text-[24px] font-bold hover:text-accent-lightGreen transition">İletişim</a>
+            </nav>
+
+            <div class="flex gap-3 mt-6 md:mt-0">
+                {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('auth.logout') }}" class="px-6 py-2 text-[24px] bg-gradient-button text-white rounded-lg hover:opacity-90 font-medium">Çıkış Yap</a>
+                {% else %}
+                    <a href="{{ url_for('auth.login') }}" class="px-6 py-2 text-[24px] border-2 border-gray-300 rounded-lg hover:bg-gray-100 font-medium">Giriş Yap</a>
+                    <a href="{{ url_for('auth.register') }}" class="px-6 py-2 text-[24px] bg-gradient-button text-white rounded-lg hover:opacity-90 font-medium">Kayıt Ol</a>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+    {% endblock %}
+
+    <div class="max-w-7xl mx-auto px-6">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="space-y-3 mb-6">
+                    {% for category, message in messages %}
+                        {% if category == 'success' %}
+                            <div class="rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-green-800">
+                                {{ message }}
+                            </div>
+                        {% elif category == 'danger' %}
+                            <div class="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-red-800">
+                                {{ message }}
+                            </div>
+                        {% else %}
+                            <div class="rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 text-gray-800">
+                                {{ message }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+    </div>
+
     {% block content %}{% endblock %}
     {% block extra_scripts %}{% endblock %}
 </body>
 </html>
-       
